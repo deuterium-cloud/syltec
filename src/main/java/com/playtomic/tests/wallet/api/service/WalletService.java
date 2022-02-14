@@ -23,10 +23,9 @@ import java.util.UUID;
 import java.util.concurrent.*;
 
 /**
- *  This is not the most fortunate approach: to use ExecutorService with Future to control Timeouts and Bulkhead
- *  It is MUCH better to use, for example, Resilience4j library.
- *  But, here is to show principle -> calling external service with transactional writes into database.
- *
+ * This is not the most fortunate approach: to use ExecutorService with Future to control Timeouts and Bulkhead
+ * It is MUCH better to use, for example, Resilience4j library.
+ * But, here is to show principle -> calling external service with transactional writes into database.
  */
 @Slf4j
 @Service
@@ -69,9 +68,10 @@ public class WalletService {
         try {
             future.get(stripServiceTimeout, TimeUnit.MILLISECONDS);
 
-        } catch (ExecutionException e) {
-            throw new StripeAmountTooSmallException();
-        } catch (TimeoutException | InterruptedException e) {
+        } catch (Exception e) {
+            if ("com.playtomic.tests.wallet.service.StripeAmountTooSmallException".equals(e.getMessage())) {
+                throw new StripeAmountTooSmallException();
+            }
             throw new StripeServiceException();
         }
 

@@ -94,7 +94,7 @@ public class WalletApplicationIT {
 
 	@Sql("/wallets_03.sql")
 	@Test
-	@DisplayName("Should return status 400 because amount is less then minimal, and amount in the database did not changed")
+	@DisplayName("Should return status 400 because amount is less then minimal, and amount in the database should not changed")
 	public void addMoneyToWallet_withLessAmount() throws Exception {
 		UUID id = UUID.fromString("d4ebba32-bebb-42fc-9caf-e71023fb66e3");
 
@@ -115,7 +115,7 @@ public class WalletApplicationIT {
 	@Sql("/wallets_04.sql")
 	@Test
 	@DisplayName("Should return status 500 because external service did not respond in given period of time." +
-			"Amount in the Wallet, in the database, did not changed")
+			"Amount in the Wallet in the database, should not be changed")
 	public void addMoneyToWallet_withTimeoutExceeded() throws Exception {
 		UUID id = UUID.fromString("d4ebba32-bebb-42fc-9caf-e71023fb66e4");
 
@@ -131,6 +131,29 @@ public class WalletApplicationIT {
 
 		Optional<Wallet> optional = walletRepository.findById(id);
 		assertEquals(new BigDecimal("100.00"), optional.get().getBalance());
+	}
+
+
+	@Sql("/wallets_05.sql")
+	@Test
+	@DisplayName("Should return status 500 because external service is unavailable." +
+			"Amount in the Wallet in the database, should not be changed")
+	public void addMoneyToWallet_unavailableExternalService() throws Exception {
+		UUID id = UUID.fromString("d4ebba32-bebb-42fc-9caf-e71023fb66e5");
+
+		stubFor(post("/").willReturn(serviceUnavailable()));
+
+		String json = "{ \"amount\": 300 }";
+
+		this.mockMvc.perform(MockMvcRequestBuilders.post("/v1/wallets/d4ebba32-bebb-42fc-9caf-e71023fb66e5")
+						.contentType(MediaType.APPLICATION_JSON_VALUE)
+						.content(json))
+				.andExpect(MockMvcResultMatchers.status().isInternalServerError())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
+
+		Optional<Wallet> optional = walletRepository.findById(id);
+		assertEquals(new BigDecimal("100.00"), optional.get().getBalance());
+
 	}
 
 }
