@@ -1,0 +1,6 @@
+/media/milan/Deuterium/Java/Syltek/technical-test-backend/src/test/java/com/playtomic/tests/wallet/service/impl/WalletServicePersistenceTest.java
+/media/milan/Deuterium/Java/Syltek/technical-test-backend/src/test/java/com/playtomic/tests/wallet/utils/Stubber.java
+/media/milan/Deuterium/Java/Syltek/technical-test-backend/src/test/java/com/playtomic/tests/wallet/WalletApplicationIT.java
+/media/milan/Deuterium/Java/Syltek/technical-test-backend/src/test/java/com/playtomic/tests/wallet/controller/WalletControllerTest.java
+/media/milan/Deuterium/Java/Syltek/technical-test-backend/src/test/java/com/playtomic/tests/wallet/service/impl/StripeServiceTest.java
+/media/milan/Deuterium/Java/Syltek/technical-test-backend/src/test/java/com/playtomic/tests/wallet/service/impl/WalletServiceTest.java

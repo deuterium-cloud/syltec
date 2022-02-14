@@ -1,0 +1,16 @@
+/media/milan/Deuterium/Java/Syltek/technical-test-backend/src/main/java/com/playtomic/tests/wallet/api/entity/Wallet.java
+/media/milan/Deuterium/Java/Syltek/technical-test-backend/src/main/java/com/playtomic/tests/wallet/api/repository/WalletRepository.java
+/media/milan/Deuterium/Java/Syltek/technical-test-backend/src/main/java/com/playtomic/tests/wallet/config/InsertInitialData.java
+/media/milan/Deuterium/Java/Syltek/technical-test-backend/src/main/java/com/playtomic/tests/wallet/WalletApplication.java
+/media/milan/Deuterium/Java/Syltek/technical-test-backend/src/main/java/com/playtomic/tests/wallet/api/exceptions/EntityNotFoundException.java
+/media/milan/Deuterium/Java/Syltek/technical-test-backend/src/main/java/com/playtomic/tests/wallet/api/exceptions/GlobalExceptionHandler.java
+/media/milan/Deuterium/Java/Syltek/technical-test-backend/src/main/java/com/playtomic/tests/wallet/service/StripeService.java
+/media/milan/Deuterium/Java/Syltek/technical-test-backend/src/main/java/com/playtomic/tests/wallet/api/request/AddMoneyRequest.java
+/media/milan/Deuterium/Java/Syltek/technical-test-backend/src/main/java/com/playtomic/tests/wallet/service/StripeAmountTooSmallException.java
+/media/milan/Deuterium/Java/Syltek/technical-test-backend/src/main/java/com/playtomic/tests/wallet/api/response/WalletDto.java
+/media/milan/Deuterium/Java/Syltek/technical-test-backend/src/main/java/com/playtomic/tests/wallet/api/service/WalletService.java
+/media/milan/Deuterium/Java/Syltek/technical-test-backend/src/main/java/com/playtomic/tests/wallet/api/controller/WalletController.java
+/media/milan/Deuterium/Java/Syltek/technical-test-backend/src/main/java/com/playtomic/tests/wallet/api/entity/WalletTransaction.java
+/media/milan/Deuterium/Java/Syltek/technical-test-backend/src/main/java/com/playtomic/tests/wallet/service/StripeServiceException.java
+/media/milan/Deuterium/Java/Syltek/technical-test-backend/src/main/java/com/playtomic/tests/wallet/service/StripeServiceV2.java
+/media/milan/Deuterium/Java/Syltek/technical-test-backend/src/main/java/com/playtomic/tests/wallet/service/StripeRestTemplateResponseErrorHandler.java
