@@ -22,6 +22,7 @@ stripe.simulator.refunds-uri: https://sandbox.playtomic.io/v1/stripe-simulator/p
 
 stripe.simulator.timeout-in-milliseconds: 3000
 stripe.simulator.number-of-threads: 4
+stripe.simulator.number-of-concurrent-calls: 4
 ---
 spring:
   config:
@@ -38,3 +39,4 @@ stripe.simulator.refunds-uri: http://localhost:9999
 
 stripe.simulator.timeout-in-milliseconds: 1000
 stripe.simulator.number-of-threads: 2
+stripe.simulator.number-of-concurrent-calls: 2

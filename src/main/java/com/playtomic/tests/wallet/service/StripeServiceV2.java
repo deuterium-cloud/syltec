@@ -6,12 +6,15 @@ import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
+import reactor.netty.http.client.HttpClient;
 
 import java.math.BigDecimal;
 import java.net.URI;
+import java.time.Duration;
 
 /**
  * Handles the communication with Stripe using Spring Webclient.
@@ -33,10 +36,15 @@ public class StripeServiceV2 {
     private WebClient client;
 
     public StripeServiceV2(@Value("${stripe.simulator.charges-uri}") @NonNull URI chargesUri,
-                           @Value("${stripe.simulator.refunds-uri}") @NonNull URI refundsUri) {
+                           @Value("${stripe.simulator.refunds-uri}") @NonNull URI refundsUri,
+                           @Value("${stripe.simulator.timeout-in-milliseconds}") @NonNull int timeout) {
         this.chargesUri = chargesUri;
         this.refundsUri = refundsUri;
-        this.client = WebClient.create();
+        HttpClient httpClient = HttpClient.create()
+                .responseTimeout(Duration.ofMillis(timeout));
+        this.client = WebClient.builder()
+                .clientConnector(new ReactorClientHttpConnector(httpClient))
+                .build();
     }
 
     public void charge(@NonNull String creditCardNumber, @NonNull BigDecimal amount) throws StripeServiceException {

@@ -24,7 +24,7 @@ import java.util.concurrent.*;
 
 /**
  * This is not the most fortunate approach: to use ExecutorService with Future to control Timeouts and Bulkhead
- * It is MUCH better to use, for example, Resilience4j library.
+ * It is MUCH better to use, for example, Resilience4j library (added in V2).
  * But, here is to show principle -> calling external service with transactional writes into database.
  */
 @Slf4j

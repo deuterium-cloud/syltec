@@ -32,12 +32,6 @@ public class GlobalExceptionHandler {
                 .body(new ErrorResponse(e.getMessage(), 404, Instant.now()));
     }
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponse> guard(Exception e) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(new ErrorResponse("Internal Server Error", 500, Instant.now()));
-    }
-
     @AllArgsConstructor
     private static class ErrorResponse {
 
