@@ -69,6 +69,7 @@ public class WalletService {
             future.get(stripServiceTimeout, TimeUnit.MILLISECONDS);
 
         } catch (Exception e) {
+
             if ("com.playtomic.tests.wallet.service.StripeAmountTooSmallException".equals(e.getMessage())) {
                 throw new StripeAmountTooSmallException();
             }

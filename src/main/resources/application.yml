@@ -1,6 +1,14 @@
 spring.profiles.active: develop
 server:
   port: 8090
+
+resilience4j:
+  bulkhead:
+    instances:
+      stripeService:
+        max-concurrent-calls: 10
+        max-wait-duration: 500ms
+
 ---
 spring:
   config:

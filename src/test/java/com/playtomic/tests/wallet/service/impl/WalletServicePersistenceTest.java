@@ -18,6 +18,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doNothing;
@@ -51,6 +52,7 @@ public class WalletServicePersistenceTest {
         WalletDto walletDto = walletService.addToWallet(id, new BigDecimal(200));
 
         assertEquals(new BigDecimal("300.00"), walletDto.getBalance());
+        assertNotNull(walletDto.getId());
     }
 
     @Sql("/wallets_02.sql")

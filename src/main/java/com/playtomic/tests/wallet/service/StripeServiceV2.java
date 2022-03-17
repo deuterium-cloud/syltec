@@ -1,6 +1,7 @@
 package com.playtomic.tests.wallet.service;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.github.resilience4j.bulkhead.annotation.Bulkhead;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
@@ -47,6 +48,7 @@ public class StripeServiceV2 {
                 .build();
     }
 
+    @Bulkhead(name = "stripeService")
     public void charge(@NonNull String creditCardNumber, @NonNull BigDecimal amount) throws StripeServiceException {
         ChargeRequestV2 body = new ChargeRequestV2(creditCardNumber, amount);
         client.post()
@@ -58,6 +60,7 @@ public class StripeServiceV2 {
                 .block();
     }
 
+    @Bulkhead(name = "stripeService")
     public void refund(@NonNull String paymentId) throws StripeServiceException {
 
         client.post()
